@@ -1,2 +1,43 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+const sum = new Promise((resolve, reject) => {
+  resolve(4);
+});
+const multiple = new Promise((resolve, reject) => {
+  resolve(54);
+});
+const sub = new Promise((resolve, reject) => {
+  resolve(32);
+});
+//const ddd=asynch()=>{}
+async function calculateFinalResult() {
+  //Synchronous code
+  sum
+    .then((res) => {
+      console.log("Sum", res);
+    })
+    .catch((err) => {});
+  multiple.then((err) => {
+    console.log("Mul", err);
+  });
+  sub.then((err) => {
+    console.log("Minus", err);
+  });
+  //Asynchronous code
+  try {
+    //Concurrent
+    const sumValue = await sum;
+    console.log("Asynch Sum Value", sumValue);
+    const mulValue = await multiple;
+    console.log("Asynch Multiple Value", mulValue);
+    const minusValue = await sub;
+    console.log("Asynch Minus Value", minusValue);
+    const apiRes = await fetch(
+      "https://p2pclouds.up.railway.app/v1/learn/weather?city=Lahore"
+    );
+    console.log(apiRes);
+    const data = await apiRes.json();
+    console.log(data);
+  } catch (err) {
+    console.log(err);
+  }
+}
+//calculateFinalResult();
